@@ -1,0 +1,36 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      >
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['/home']" class="icon-in-link"><mat-icon style="margin-right:16px">home</mat-icon> Home</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/courses']" class="icon-in-link"><mat-icon style="margin-right:16px">card_membership</mat-icon> Courses</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/departments']" class="icon-in-link"><mat-icon style="margin-right:16px">category</mat-icon> Departments</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/students']" class="icon-in-link"><mat-icon style="margin-right:16px">people</mat-icon> Students</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/student-registrations']" class="icon-in-link"><mat-icon style="margin-right:16px">add_to_queue</mat-icon> Registrations</a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        >
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Demo App</span>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

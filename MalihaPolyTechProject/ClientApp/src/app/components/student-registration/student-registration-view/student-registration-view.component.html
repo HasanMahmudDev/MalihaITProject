@@ -1,0 +1,42 @@
+<mat-card class="mat-elevation-z5">
+  <mat-card-header>
+    <mat-card-title>Students Registrations</mat-card-title>
+    <mat-card-subtitle>Student Registration List</mat-card-subtitle>
+    <div class="link-right">
+      <a [routerLink]="['/student-registration-create']" mat-mini-fab color="warn"><mat-icon>add</mat-icon></a>
+    </div>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="studentId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Student</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element?.studentId}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="courseId">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Course</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element?.courseId}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="enrollDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Enroll date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element?.enrollDate | date: 'yyyy-MM-dd'}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="isPaymentComplete">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Payment Complete</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element?.isPaymentComplete ? 'Yes': 'No'}}</mat-cell>
+      </ng-container>
+      <<ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <a [routerLink]="['/student-registration-edit', element.studentId]" mat-icon-button><mat-icon>edit</mat-icon></a>
+          <button (click)="delete(element)" mat-icon-button color="warn"><mat-icon>delete</mat-icon></button>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="columnList"></mat-header-row>
+      <mat-row *matRowDef="let row;columns:columnList"></mat-row>
+    </mat-table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+  </mat-card-content>
+</mat-card>
+

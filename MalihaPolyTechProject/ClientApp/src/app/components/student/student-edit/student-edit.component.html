@@ -1,0 +1,52 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Create New Student</mat-card-title>
+    <mat-card-subtitle>Fill the form</mat-card-subtitle>
+
+  </mat-card-header>
+  <mat-card-content>
+    <form #createForm="ngForm" class="form" (ngSubmit)="save(createForm)" *ngIf="student!=null">
+      <mat-form-field class="fw">
+        <mat-label>Name</mat-label>
+        <input matInput name="name" type="text" #name="ngModel" [(ngModel)]="student.name" required>
+        <mat-error *ngIf="createForm.touched && name.invalid">
+          Name  <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="fw">
+        <mat-label>Date of Birth</mat-label>
+        <input matInput name="dateOfBirth" type="text" #dateOfBirth="ngModel" [(ngModel)]="student.dateOfBirth"
+               [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="createForm.touched && dateOfBirth.invalid">
+          Date of birth  <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="fw">
+        <mat-label>Department</mat-label>
+        <!--<input matInput name="departmentId" type="text" #departmentId="ngModel" [(ngModel)]="student.departmentId" required>-->
+        <mat-select name="departmentId" #departmentId="ngModel" [(ngModel)]="student.departmentId" required>
+          <mat-option [value]="''">Select</mat-option>
+          <mat-option *ngFor="let d of departments" [value]="d.departmentId">
+            {{d.departmentName}}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="createForm.touched && departmentId.invalid">
+          Sept. Id  <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="fw">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions>
+      <a mat-button [routerLink]="['/students']"><mat-icon>arrow_left</mat-icon> Back to list</a>
+
+    </mat-card-actions>
+
+  </mat-card-footer>
+</mat-card>

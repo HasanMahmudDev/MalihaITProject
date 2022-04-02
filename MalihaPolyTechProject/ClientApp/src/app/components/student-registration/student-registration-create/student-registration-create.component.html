@@ -1,0 +1,72 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Create New Student</mat-card-title>
+    <mat-card-subtitle>Fill the form</mat-card-subtitle>
+
+  </mat-card-header>
+  <mat-card-content>
+    <form #createForm="ngForm" class="form" (ngSubmit)="save(createForm)">
+      <mat-form-field class="fw">
+        <mat-label>Student Id</mat-label>
+
+        <mat-select (selectionChange)="studentSelectionChanged($event)" name="studentId" type="text" #studentId="ngModel" [(ngModel)]="studentReg.studentId" required>
+          <mat-option [value]="''">Select one</mat-option>
+          <mat-option *ngFor="let s of students" [value]="s.studentId">{{s.studentId}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="createForm.touched && studentId.invalid">
+          Student id  <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="fw">
+        <mat-label>Student Name</mat-label>
+        <input matInput disabled [value]="selectedStudent">
+
+      </mat-form-field>
+      <mat-form-field class="fw">
+        <mat-label>Department</mat-label>
+        <input matInput disabled [value]="selectedStudentDept">
+
+      </mat-form-field>
+      <mat-form-field class="fw">
+        <mat-label>Course Id</mat-label>
+
+        <mat-select name="courseId" type="text" #courseId="ngModel" [(ngModel)]="studentReg.courseId" required>
+          <mat-option [value]="''">Select one</mat-option>
+          <mat-option *ngFor="let s of courses" [value]="s.courseId">{{s.title}}</mat-option>
+        </mat-select>
+        <mat-error *ngIf="createForm.touched && studentId.invalid">
+          Course id  <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="fw">
+        <mat-label>Enroll Date</mat-label>
+        <input matInput name="enrollDate" type="text" #enrollDate="ngModel" [(ngModel)]="studentReg.enrollDate"
+               [matDatepicker]="picker" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="createForm.touched && enrollDate.invalid">
+          enrollDateh  <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="fw">
+        <mat-label>Payment Complete</mat-label>
+        <mat-checkbox style="margin: 0 10px;" name="isPaymentComplete" #isPaymentComplete="ngModel" [(ngModel)]="studentReg.isPaymentComplete"></mat-checkbox>
+      </div>
+
+
+      <div class="fw">
+        <button type="submit" mat-raised-button color="primary">Save</button>
+
+      </div>
+
+    </form>
+  </mat-card-content>
+  <mat-card-footer>
+    <mat-card-actions>
+      <a mat-button [routerLink]="['/student-registrations']"><mat-icon>arrow_left</mat-icon> Back to list</a>
+
+    </mat-card-actions>
+
+  </mat-card-footer>
+</mat-card>
