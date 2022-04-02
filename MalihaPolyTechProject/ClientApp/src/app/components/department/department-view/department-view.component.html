@@ -8,7 +8,7 @@
   </mat-card-header>
   <mat-card-content>
     <mat-table [dataSource]="dataSource" matSort>
-      <ng-container matColumnDef="title">
+      <ng-container matColumnDef="departmentName">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Department Name</mat-header-cell>
         <mat-cell *matCellDef="let element">{{element.departmentName}}</mat-cell>
       </ng-container>

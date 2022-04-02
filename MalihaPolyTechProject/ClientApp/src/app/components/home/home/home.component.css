@@ -1,0 +1,12 @@
+.link-right {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+}
+
+
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/maliha_1.jpeg');
+  background-size: cover;
+}
